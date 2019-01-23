@@ -22,9 +22,9 @@ CREATE TABLE Time
 CREATE TABLE Production
 (
   production_id INT NOT NULL AUTO_INCREMENT,
-  production_title VARCHAR(255) NOT NULL,
-  event_name VARCHAR(255) NOT NULL,
-  event_abreviation varchar(50),
+  production_title VARCHAR(100) NOT NULL,
+  event_name VARCHAR(80) NOT NULL,
+  event_abreviation varchar(20),
   ISSN varchar(50),
   PRIMARY KEY (production_id)
 );
@@ -58,3 +58,6 @@ CREATE TABLE Production_fact
   FOREIGN KEY (researchfield_id) REFERENCES ResearchField(researchfield_id),
   PRIMARY KEY (time_id, researcher_id, production_id, qualis_id, researchfield_id)
 );
+
+
+ALTER TABLE `Production` ADD UNIQUE `unique_index` (`production_title`, `event_name`);
