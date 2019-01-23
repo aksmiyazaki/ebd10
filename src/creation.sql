@@ -22,8 +22,8 @@ CREATE TABLE Time
 CREATE TABLE Production
 (
   production_id INT NOT NULL AUTO_INCREMENT,
-  production_title VARCHAR(100) NOT NULL,
-  event_name VARCHAR(80) NOT NULL,
+  production_title VARCHAR(150) NOT NULL,
+  event_name VARCHAR(100) NOT NULL,
   event_abreviation varchar(20),
   ISSN varchar(50),
   PRIMARY KEY (production_id)
@@ -51,12 +51,14 @@ CREATE TABLE Production_fact
   production_id INT NOT NULL,
   qualis_id INT NOT NULL,
   researchfield_id INT NOT NULL,
+  program_id INT NOT NULL,
   FOREIGN KEY (time_id) REFERENCES Time(time_id),
   FOREIGN KEY (researcher_id) REFERENCES Researcher(researcher_id),
   FOREIGN KEY (production_id) REFERENCES Production(production_id),
   FOREIGN KEY (qualis_id) REFERENCES Qualis(qualis_id),
   FOREIGN KEY (researchfield_id) REFERENCES ResearchField(researchfield_id),
-  PRIMARY KEY (time_id, researcher_id, production_id, qualis_id, researchfield_id)
+  FOREIGN KEY (program_id) REFERENCES ResearchProgram (program_id),
+  PRIMARY KEY (time_id, researcher_id, production_id, qualis_id, researchfield_id, program_id)
 );
 
 
